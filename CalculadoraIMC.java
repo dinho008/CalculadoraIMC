@@ -10,6 +10,15 @@ public class CalculadoraIMC {
         System.out.print("Digite o gênero (M/F/N): ");
         char genero = lerTeclado.nextLine().charAt(0);
 
+        
+        if (genero != 'M' && genero != 'm' &&
+            genero != 'F' && genero != 'f' &&
+            genero != 'N' && genero != 'n') {
+            System.out.println("Opção inválida! Digite apenas M, F ou N.");
+            main(args); 
+            return;
+        }
+
         System.out.print("Digite a altura (em metros): ");
         double altura = lerTeclado.nextDouble();
 
@@ -51,29 +60,13 @@ public class CalculadoraIMC {
                     classificacao = "Abaixo do Normal";
                 }
                 break;
-
-            default:
-                System.out.println("Gênero inválido! Considerando padrão Feminino.");
-                if (imc >= 39) {
-                    classificacao = "Obesidade Mórbida";
-                } else if (imc >= 29) {
-                    classificacao = "Obesidade Moderada";
-                } else if (imc >= 24) {
-                    classificacao = "Obesidade Leve";
-                } else if (imc >= 19) {
-                    classificacao = "Normal";
-                } else {
-                    classificacao = "Abaixo do Normal";
-                }
-                break;
         }
 
-        System.out.println("\n--- Resultado ---");
+        System.out.println("--- Resultado ---");
         System.out.printf("Nome: %s%n", nome);
-        System.out.printf("Gênero: %c%n", genero);
+        System.out.printf("Gênero: %c%n", Character.toUpperCase(genero));
         System.out.printf("IMC: %.2f%n", imc);
         System.out.printf("Classificação: %s%n", classificacao);
-
 
         lerTeclado.close();
     }
