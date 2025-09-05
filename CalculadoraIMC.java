@@ -4,24 +4,31 @@ public class CalculadoraIMC {
     public static void main(String[] args) {
         Scanner lerTeclado = new Scanner(System.in);
 
-        System.out.print("Digite o nome: ");
+        final String RESET = "\u001B[0m";
+        final String VERMELHO = "\u001B[31m";
+        final String VERDE = "\u001B[32m";
+        final String AMARELO = "\u001B[33m";
+        final String AZUL = "\u001B[34m";
+        final String ROXO    = "\u001B[35m";
+
+        System.out.print(AZUL + "Digite o nome: " + RESET);
         String nome = lerTeclado.nextLine();
 
-        System.out.print("Digite o gênero (M/F/N): ");
+        System.out.print(AZUL + "Digite o gênero (M/F/N): " + RESET);
         char genero = lerTeclado.nextLine().charAt(0);
 
         if (genero != 'M' && genero != 'm' &&
             genero != 'F' && genero != 'f' &&
             genero != 'N' && genero != 'n') {
-            System.out.println("Opção inválida! Digite apenas M, F ou N.\n");
+            System.out.println(VERMELHO + "Opção inválida! Digite apenas M, F ou N.\n" + RESET);
             main(args); 
             return;     
         }
 
-        System.out.print("Digite a altura (em metros): ");
+        System.out.print(AZUL + "Digite a altura (em metros): " + RESET);
         double altura = lerTeclado.nextDouble();
 
-        System.out.print("Digite o peso (em kg): ");
+        System.out.print(AZUL + "Digite o peso (em kg): " + RESET);
         double peso = lerTeclado.nextDouble();
 
         double imc = peso / (altura * altura);
@@ -62,10 +69,12 @@ public class CalculadoraIMC {
         }
 
         System.out.println("\n--- Resultado ---");
-        System.out.printf("Nome: %s%n", nome);
-        System.out.printf("Gênero: %c%n", Character.toUpperCase(genero));
-        System.out.printf("IMC: %.2f%n", imc);
-        System.out.printf("Classificação: %s%n", classificacao);
+        System.out.printf(AZUL + "Nome: %s%n" + RESET, nome);
+        System.out.println(VERDE + "Gênero: " + Character.toUpperCase(genero) + RESET);
+        System.out.printf(AMARELO + "IMC: %.2f%n" + RESET, imc);
+        System.out.printf(ROXO + "Classificação: %s%n" + RESET, classificacao);
+        System.out.println(VERMELHO + "ATENÇÃO: O resultado é apenas para fins de estudo e não possui validação científica" + RESET);
+
 
         lerTeclado.close();
     }
