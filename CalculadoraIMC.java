@@ -9,7 +9,7 @@ public class CalculadoraIMC {
         final String VERDE = "\u001B[32m";
         final String AMARELO = "\u001B[33m";
         final String AZUL = "\u001B[34m";
-        final String ROXO    = "\u001B[35m";
+        final String ROXO    = "\u001B[35m";    
 
         System.out.print(AZUL + "Digite o nome: " + RESET);
         String nome = lerTeclado.nextLine();
@@ -25,11 +25,29 @@ public class CalculadoraIMC {
             return;     
         }
 
-        System.out.print(AZUL + "Digite a altura (em metros): " + RESET);
-        double altura = lerTeclado.nextDouble();
+        System.out.print(AZUL + "Digite a altura (em metros, use vírgula ou ponto): " + RESET);
+        String alturaStr = lerTeclado.nextLine();
 
-        System.out.print(AZUL + "Digite o peso (em kg): " + RESET);
-        double peso = lerTeclado.nextDouble();
+        if (!alturaStr.contains(",") && !alturaStr.contains(".")) {
+        System.out.println(VERMELHO + "Formato inválido! Digite usando vírgula ou ponto (ex: 1,80)." + RESET);
+        lerTeclado.close();
+        return;
+        }
+
+        alturaStr = alturaStr.replace(",", ".");
+        double altura = Double.parseDouble(alturaStr);
+
+        System.out.print(AZUL + "Digite o peso (em kg, use vírgula ou ponto): " + RESET);
+        String pesoStr = lerTeclado.nextLine();
+
+        if (!pesoStr.contains(",") && !pesoStr.contains(".")) {
+        System.out.println(VERMELHO + "Formato inválido! Digite usando vírgula ou ponto (ex: 70,5)." + RESET);
+        lerTeclado.close();
+        return;
+        }
+
+        pesoStr = pesoStr.replace(",", ".");
+        double peso = Double.parseDouble(pesoStr);
 
         double imc = peso / (altura * altura);
         String classificacao = "";
